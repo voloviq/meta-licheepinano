@@ -1,4 +1,4 @@
-DESCRIPTION = "A QT5 image with wifi support application for Lichee Pi Zero Zero-Dock Boards"
+DESCRIPTION = "A QT5 image with wifi support application for Lichee Pi Nano"
 LICENSE = "MIT"
 
 NETWORK_APP = " \

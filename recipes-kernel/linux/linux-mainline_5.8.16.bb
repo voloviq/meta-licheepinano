@@ -2,7 +2,7 @@ SECTION = "kernel"
 DESCRIPTION = "Mainline Stable Linux kernel"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
-COMPATIBLE_MACHINE = "(sun4i|sun5i|sun7i|sun8i)"
+COMPATIBLE_MACHINE = "(suniv)"
 
 inherit kernel
 

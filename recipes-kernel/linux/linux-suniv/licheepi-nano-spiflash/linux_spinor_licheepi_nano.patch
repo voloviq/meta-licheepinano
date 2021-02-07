@@ -1,0 +1,62 @@
+Index: git/drivers/mtd/spi-nor/spi-nor.c
+===================================================================
+--- git.orig/drivers/mtd/spi-nor/spi-nor.c
++++ git/drivers/mtd/spi-nor/spi-nor.c
+@@ -1182,7 +1182,7 @@ static const struct flash_info spi_nor_i
+ 	},
+ 	{ "w25q80", INFO(0xef5014, 0, 64 * 1024,  16, SECT_4K) },
+ 	{ "w25q80bl", INFO(0xef4014, 0, 64 * 1024,  16, SECT_4K) },
+-	{ "w25q128", INFO(0xef4018, 0, 64 * 1024, 256, SECT_4K) },
++	{ "w25q128", INFO(0xef4018, 0, 64 * 1024, 256, 0) },
+ 	{ "w25q256", INFO(0xef4019, 0, 64 * 1024, 512, SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
+ 	{ "w25m512jv", INFO(0xef7119, 0, 64 * 1024, 1024,
+ 			SECT_4K | SPI_NOR_QUAD_READ | SPI_NOR_DUAL_READ) },
+Index: git/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts
+===================================================================
+--- git.orig/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts
++++ git/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts
+@@ -67,13 +67,41 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&spi0_pins_a>;
+ 	status = "okay";
+-
+-	flash@0 {
++	spi-max-frequency = <50000000>;
++	flash: w25q128@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		compatible = "winbond,w25q128", "jedec,spi-nor";
+ 		reg = <0>;
+-		spi-max-frequency = <40000000>;
++		spi-max-frequency = <50000000>;
++		partitions {
++			compatible = "fixed-partitions";
++            #address-cells = <1>;
++            #size-cells = <1>;
++
++            partition@0 {
++                label = "u-boot";
++                reg = <0x000000 0x70000>;
++                read-only;
++            };
++
++            partition@70000 {
++                label = "dtb";
++                reg = <0x70000 0x10000>;
++                read-only;
++            };
++
++            partition@80000 {
++                label = "kernel";
++                reg = <0x80000 0x400000>;
++                read-only;
++            };
++
++            partition@480000 {
++                label = "rootfs";
++                reg = <0x480000 0xB80000>;
++            };
++		};
+ 	};
+ };
+ 

@@ -1,4 +1,4 @@
-DESCRIPTION = "A console image for Lichee Pi Zero, Zero-Dock Boards"
+DESCRIPTION = "A console image for Lichee Pi Nano"
 LICENSE = "MIT"
 
 NETWORK_APP = " \

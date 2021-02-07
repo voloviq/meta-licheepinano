@@ -5,17 +5,12 @@ DESCRIPTION="Upstream's U-boot configured for sunxi devices"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://Licenses/README;md5=30503fd321432fc713238f582193b78e"
 
-COMPATIBLE_MACHINE = "(sun4i|sun5i|sun7i|sun8i)"
-
-DEFAULT_PREFERENCE_sun4i="1"
-DEFAULT_PREFERENCE_sun5i="1"
-DEFAULT_PREFERENCE_sun7i="1"
-DEFAULT_PREFERENCE_sun8i="1"
+COMPATIBLE_MACHINE = "(suniv)"
 
 SRC_URI = "git://git.denx.de/u-boot.git;branch=master \
-           file://boot.cmd \
-	   file://001-zero-dock-dts.patch\
-           "
+	file://boot.cmd \
+	file://0001-u-boot-add-dts.patch \
+	"
 
 S = "${WORKDIR}/git"
 
