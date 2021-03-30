@@ -100,9 +100,9 @@ Headphone <br>
 8. Insert SD CARD into dedicated CARD slot and issue following command to write an image
 
     **Note:** <br>
-    Be 100% sure to provide a valid device name (of=/dev/**sde**). Wrong name "/dev/sde" dameage Your system file ! <br> <br>
+    Be 100% sure to provide a valid device name (of=/dev/**sde/mmcblk0**). Wrong name "/dev/sde" dameage Your system file ! <br> <br>
         Nano version <br>
-    	***sudo dd if=~/yocto/tmp/deploy/images/licheepinano/qt5-image-licheepinano.sunxi-sdimg of=/dev/sde bs=1024*** <br>
+    	***sudo dd if=~/yocto/tmp/deploy/images/licheepinano/console-image-licheepinano.sunxi-sdimg of=/dev/mmcblk0 bs=1024*** <br>
 
 # Limitation
 

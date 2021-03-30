@@ -49,7 +49,6 @@ QT_DEV_TOOLS = " \
 KERNEL_EXTRA_INSTALL = " \
     kernel-devicetree \
     kernel-modules \
-    sunxi-mali \
  "
 
 DEV_TOOLS_INSTALL = " \
