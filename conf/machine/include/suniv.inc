@@ -1,5 +1,11 @@
-require conf/machine/include/sunxi.inc
-require conf/machine/include/sunxi-mali.inc
 require conf/machine/include/tune-arm926ejs.inc
+include conf/machine/include/soc-family.inc
 
 SOC_FAMILY = "suniv"
+
+KERNEL_IMAGETYPE ?= "uImage"
+
+IMAGE_CLASSES += "sdcard_image-sunxi"
+IMAGE_FSTYPES += "ext3 tar.gz sunxi-sdimg"
+
+MACHINE_EXTRA_RRECOMMENDS = "kernel-modules"
