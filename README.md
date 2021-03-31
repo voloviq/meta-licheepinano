@@ -8,6 +8,9 @@
 Lichee Pi Nano Version <br>
 <br>
 
+Lichee Pi Nano Pinout <br>
+![Pinout](licheepinano-pinout.png) <br>
+
 ## General Note:
 Assumed that Linux Ubuntu is installed
 
