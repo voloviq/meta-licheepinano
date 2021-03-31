@@ -23,8 +23,9 @@ S = "${WORKDIR}/git"
 SRCREV_pn-${PN} = "44874751dbc7e112de0c78cbfb0479574cdb2332"
 
 SRC_URI += "git://github.com/Lichee-Pi/linux.git;branch=nano-4.14-exp;depth=1;protocol=git \
-        file://defconfig \
+		file://licheepi-nano/001-lichee-pi-nano-dts-add-modules-patch.patch \
+		file://licheepi-nano/002-add-original-lichee-pi-nano-lcd-touchscreen.dtsi.patch \
+		file://licheepi-nano/003-suniv-dtsi-i2c-add.patch \
+		file://licheepi-nano/004-licheepi-nano-i2c-mv64xx.patch \
+        file://licheepi-nano/defconfig \
         "
-#SRC_URI += "git:///home/fefr/Builds/suniv/linux;branch=f1c100s-480272lcd-test;protocol=file \
-#         file://defconfig \
-#         "

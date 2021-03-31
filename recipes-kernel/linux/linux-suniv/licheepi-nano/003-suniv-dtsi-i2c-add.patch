@@ -1,0 +1,37 @@
+diff --git a/arch/arm/boot/dts/suniv.dtsi b/arch/arm/boot/dts/suniv.dtsi
+index d785766..adc64a5 100644
+--- a/arch/arm/boot/dts/suniv.dtsi
++++ b/arch/arm/boot/dts/suniv.dtsi
+@@ -229,6 +229,12 @@
+ 				pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
+ 				function = "mmc0";
+ 			};
++
++			i2c0_pins: i2c0 {
++				pins = "PE11", "PE12";
++				function = "i2c0";
++			};
++
+ 		};
+ 
+ 		timer@1c20c00 {
+@@ -276,6 +282,19 @@
+ 			status = "disabled";
+ 		};
+ 
++		i2c0: i2c@1c27000 {
++            compatible = "allwinner,sun6i-a31-i2c";
++            reg = <0x01c27000 0x400>;
++            interrupts = <7>;
++            clocks = <&ccu CLK_BUS_I2C0>;
++            resets = <&ccu RST_BUS_I2C0>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&i2c0_pins>;
++            status = "disabled";
++            #address-cells = <1>;
++            #size-cells = <0>;
++        };
++
+ 		usb_otg: usb@1c13000 {
+ 			compatible = "allwinner,suniv-f1c100s-musb";
+ 			reg = <0x01c13000 0x0400>;

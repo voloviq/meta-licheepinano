@@ -1,0 +1,12 @@
+diff --git a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
+index 9da55cb..a5e373c 100644
+--- a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
++++ b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include "suniv-f1c100s-licheepi-nano.dts"
++#include "lichee_pi_nano_original_lcd_touchscreen.dtsi"
+ 
+ / {
+ 	panel: panel {
