@@ -13,18 +13,12 @@ Assumed that Linux Ubuntu is installed
 
 ## List of tested elements
 
-WiFi <br>
-Ethernet <br>
 Lcd <br>
 Touchscreen <br>
-Led  <br>
-Backlight for Lcd <br>
 
 ## List of not tested elements
 
-Bluetooth - appears during system boot up <br>
-Microphone <br>
-Headphone <br>
+TBD <br>
 
 ## How to build an images
 
@@ -100,7 +94,7 @@ Headphone <br>
 8. Insert SD CARD into dedicated CARD slot and issue following command to write an image
 
     **Note:** <br>
-    Be 100% sure to provide a valid device name (of=/dev/**sde/mmcblk0**). Wrong name "/dev/sde" dameage Your system file ! <br> <br>
+    Be 100% sure to provide a valid device name (of=/dev/**sde/mmcblk0**). Wrong name "/dev/sde/mmcblk0" dameage Your system file ! <br> <br>
         Nano version <br>
     	***sudo dd if=~/yocto/tmp/deploy/images/licheepinano/console-image-licheepinano.sunxi-sdimg of=/dev/mmcblk0 bs=1024*** <br>
 
@@ -108,4 +102,5 @@ Headphone <br>
 
 	- rootfs-resize not working (SD CARD size can be resized manualy)
 	- no wiringpi or similar library to driver GPIO in C code
-	- discover problem when WiFi connected to access point (probably some drivers issues), nevertheless WiFi works
+	- wifi not working, missing in dts
+	- spi flash not supported only mmc0 working
