@@ -11,6 +11,9 @@ Lichee Pi Nano Version <br>
 Lichee Pi Nano Pinout <br>
 ![Pinout](licheepinano-pinout.png) <br>
 
+Lichee Pi Nano dedicated LCD Display model sh050jgb30 <br>
+![Display](licheepi-zero-nano-lcd-display.jpg) <br>
+
 ## General Note:
 Assumed that Linux Ubuntu is installed
 
@@ -97,7 +100,7 @@ TBD <br>
 8. Insert SD CARD into dedicated CARD slot and issue following command to write an image
 
     **Note:** <br>
-    Be 100% sure to provide a valid device name (of=/dev/**sde/mmcblk0**). Wrong name "/dev/sde/mmcblk0" dameage Your system file ! <br> <br>
+    Be 100% sure to provide a valid device name (**of=/dev/sde/mmcblk0**). Wrong name "/dev/sde/mmcblk0" dameage Your system file ! <br> <br>
         Nano version <br>
     	***sudo dd if=~/yocto/tmp/deploy/images/licheepinano/console-image-licheepinano.sunxi-sdimg of=/dev/mmcblk0 bs=1024*** <br>
 
