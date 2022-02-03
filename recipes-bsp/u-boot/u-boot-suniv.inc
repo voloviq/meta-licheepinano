@@ -12,9 +12,8 @@ COMPATIBLE_MACHINE = "(suniv)"
 DEFAULT_PREFERENCE_suniv="1"
 
 SRC_URI = "git://github.com/henrycoding/uboot-f1c100s.git;branch=master \
-		   file://001-u-boot-display-parameters-dts-modification.patch \
-		   file://boot.cmd \
-           "
+		file://boot.cmd \
+		"
 
 SRCREV = "155caf14c9e998e3379adbd4db7b0bb82184806e"
 

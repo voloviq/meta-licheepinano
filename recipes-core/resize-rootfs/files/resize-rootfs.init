@@ -1,6 +1,7 @@
 #!/bin/sh
 
 PART_DEV="mmcblk0"
+PART_NUM=2
 echo "Partition name is : $PART_DEV"
 # Get the starting offset of the root partition
 PART_START=$(parted /dev/mmcblk0 -ms unit s p | tail -n 1 | cut -f 2 -d:)

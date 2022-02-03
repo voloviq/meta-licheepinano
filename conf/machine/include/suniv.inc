@@ -6,4 +6,4 @@ SOC_FAMILY = "suniv"
 KERNEL_IMAGETYPE ?= "uImage"
 
 IMAGE_CLASSES += "sdcard_image-sunxi"
-IMAGE_FSTYPES += "ext4 tar.gz sunxi-sdimg"
+IMAGE_FSTYPES += "ext4 tar.gz sunxi-sdimg jffs2"

@@ -1,5 +1,5 @@
 diff --git a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts
-index 50088bf..114628c 100644
+index 50088bf..067f0ea 100644
 --- a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts
 +++ b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano.dts
 @@ -46,12 +46,41 @@
@@ -8,10 +8,11 @@ index 50088bf..114628c 100644
  
 -	flash@0 {
 +	spi-max-frequency = <50000000>;
-+	flash: w25q128@0 {
++	flash: xt25f128b@0 {
  		#address-cells = <1>;
  		#size-cells = <1>;
- 		compatible = "winbond,w25q128", "jedec,spi-nor";
+-		compatible = "winbond,w25q128", "jedec,spi-nor";
++		compatible = "xtx,xt25f128b", "jedec,spi-nor";
  		reg = <0>;
 -		spi-max-frequency = <40000000>;
 +		spi-max-frequency = <50000000>;
@@ -47,10 +48,10 @@ index 50088bf..114628c 100644
  };
  
 diff --git a/drivers/mtd/spi-nor/spi-nor.c b/drivers/mtd/spi-nor/spi-nor.c
-index 19c0007..ce22571 100644
+index 19c0007..52a3f9d 100644
 --- a/drivers/mtd/spi-nor/spi-nor.c
 +++ b/drivers/mtd/spi-nor/spi-nor.c
-@@ -1161,7 +1161,7 @@ static const struct flash_info spi_nor_ids[] = {
+@@ -1161,10 +1161,13 @@ static const struct flash_info spi_nor_ids[] = {
  	},
  	{ "w25q80", INFO(0xef5014, 0, 64 * 1024,  16, SECT_4K) },
  	{ "w25q80bl", INFO(0xef4014, 0, 64 * 1024,  16, SECT_4K) },
@@ -59,3 +60,9 @@ index 19c0007..ce22571 100644
  	{ "w25q256", INFO(0xef4019, 0, 64 * 1024, 512, SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
  	{ "w25m512jv", INFO(0xef7119, 0, 64 * 1024, 1024,
  			SECT_4K | SPI_NOR_QUAD_READ | SPI_NOR_DUAL_READ) },
++			
++	/* XTX Technology (Shenzhen) Limited */
++	{ "xt25f128b", INFO(0x0B4018, 0, 64 * 1024, 256, SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
+ 
+ 	/* Catalyst / On Semiconductor -- non-JEDEC */
+ 	{ "cat25c11", CAT25_INFO(  16, 8, 16, 1, SPI_NOR_NO_ERASE | SPI_NOR_NO_FR) },

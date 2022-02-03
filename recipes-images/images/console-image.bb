@@ -11,9 +11,7 @@ inherit core-image
 
 SYSTEM_TOOLS_INSTALL = " \
     i2c-tools \
-    sysbench \
     tzdata \
-    devmem2 \
 "
 
 KERNEL_EXTRA_INSTALL = " \
@@ -30,20 +28,6 @@ UTILITIES_INSTALL = " \
     libstdc++-dev \
     openssh-sftp \
     resize-rootfs \
-    ppp \
-    tzdata \
-"
-
-WIFI_SUPPORT = " \
-    iw \
-    rtl8723bs-wireless \
-    wpa-supplicant \
-    bluez5 \
-    wpa-supplicant-passphrase \
-    wpa-supplicant-cli \
-    network-config-misc \
-    iproute2 \
-    iproute2-tc \
 "
 
 TSLIB = " \
@@ -57,7 +41,6 @@ TSLIB = " \
 IMAGE_INSTALL += " \
   ${SYSTEM_TOOLS_INSTALL} \
   ${UTILITIES_INSTALL} \
-  ${NETWORK_APP} \
   ${TSLIB} \
   ${KERNEL_EXTRA_INSTALL} \
 "

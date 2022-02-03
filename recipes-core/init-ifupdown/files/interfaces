@@ -5,7 +5,7 @@ auto lo
 iface lo inet loopback
 
 # Wireless interfaces
-auto wlan0
+# auto wlan0
 iface wlan0 inet dhcp
 	wireless_mode managed
 	wireless_essid any
@@ -13,7 +13,7 @@ iface wlan0 inet dhcp
 	wpa-conf /etc/wpa_supplicant.conf
 
 # Wired or wireless interfaces
-auto eth0                                
+# auto eth0                                
 iface eth0 inet static             
         address 192.168.5.78
         netmask 255.255.255.0
@@ -22,7 +22,7 @@ iface eth0 inet static
 
 # Ethernet/RNDIS gadget (g_ether)
 # ... or on host side, usbnet and random hwaddr
-auto usb0
+# auto usb0
 iface usb0 inet static
 	address 10.42.0.78
 	netmask 255.255.255.0
