@@ -27,5 +27,6 @@ SRC_URI += "git://github.com/Lichee-Pi/linux.git;branch=nano-4.14-exp;depth=1;pr
 		file://licheepi-nano/002-add-original-lichee-pi-nano-lcd-touchscreen.dtsi.patch \
 		file://licheepi-nano/003-suniv-dtsi-i2c-add.patch \
 		file://licheepi-nano/004-licheepi-nano-i2c-mv64xx.patch \
-        file://licheepi-nano/defconfig \
+		file://licheepi-nano/005-dts-add-nor-flash-support.patch \
+        	file://licheepi-nano/defconfig \
         "
