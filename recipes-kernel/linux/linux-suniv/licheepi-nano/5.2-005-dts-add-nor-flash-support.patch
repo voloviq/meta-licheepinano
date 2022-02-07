@@ -172,13 +172,13 @@ index 0000000..c6f515b
 +
 +            partition@80000 {
 +                label = "kernel";
-+                reg = <0x80000 0x420000>;
++                reg = <0x80000 0x440000>;
 +                read-only;
 +            };
 +
-+            partition@4A0000 {
++            partition@4C0000 {
 +                label = "rootfs";
-+                reg = <0x4A0000 0xB80000>;
++                reg = <0x4C0000 0xB40000>;
 +            };
 +		};
 +	};
@@ -267,13 +267,13 @@ index 06085f0..c6f515b 100644
 +
 +            partition@80000 {
 +                label = "kernel";
-+                reg = <0x80000 0x420000>;
++                reg = <0x80000 0x440000>;
 +                read-only;
 +            };
 +
-+            partition@4A0000 {
++            partition@4C0000 {
 +                label = "rootfs";
-+                reg = <0x4A0000 0xB80000>;
++                reg = <0x4C0000 0xB60000>;
 +            };
  		};
  	};
