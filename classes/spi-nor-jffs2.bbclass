@@ -1,8 +1,8 @@
 inherit image_types
 
 #
-# Create an image that can by written onto a SPI NOR flash technology using dd.
-# Written for LicheePi Nano to simplify programming process and flash only one file.
+# Create an image that can by written into a SPI NOR flash technology using dd application.
+# Written for LicheePi Nano to simplify programming process and to write only one image file.
 #
 # The image layout(layout is valid for 16MBytes Flashes) used is:
 #
@@ -10,11 +10,12 @@ inherit image_types
 #    0                      -> 458752(0x70000)             - SPL U-Boot
 #    488*1024               -> 65536(0x10000)              - The dtb file
 #    512*1024               -> 4980736(0x4C0000)           - Kernel
-#    4864*1024              -> 10494976(0xA02400)          - JFFS2 rootfs previously 0xA01000
+#    4864*1024              -> 10494976(0xA02400)          - JFFS2 rootfs
 #
-#    SUM of all partition should give all flash memory size SUM = 0x70000+0x10000+0x4C0000+0xA02400 = 0xF42400(16000000)
+#    SUM of all partition should give all flash memory size, 
+#    SUM = 0x70000+0x10000+0x4C0000+0xA02400 = 0xF42400(16000000)
 #
-#	 Before change partition offsets and size align it with U-Boot dts, defconifg and Kernel DTS
+#	 Before change partition offsets here do it first for U-Boot DTS and defconifg plus Kernel DTS
 
 # This image depends on the rootfs image
 IMAGE_TYPEDEP_sunxi-spinor = "${SPINOR_ROOTFS_TYPE}"
@@ -27,7 +28,7 @@ do_image_sunxi_spinor[depends] += " \
 			virtual/bootloader:do_deploy \
 			"
 
-# SD card image name
+# The NOR SPI Flash image name
 SPINOR = "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.sunxi-spinor"
 
 IMAGE_CMD_sunxi-spinor () {

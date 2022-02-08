@@ -23,6 +23,7 @@ S = "${WORKDIR}/git"
 SRCREV_pn-${PN} = "05696d0119680f12afe74d70a26f8d35c208ba4a"
 
 SRC_URI += "git://github.com/Lichee-Pi/linux.git;branch=nano-5.2-flash;depth=1;protocol=git \
-		file://licheepi-nano/5.2-005-dts-add-nor-flash-support.patch\
-        	file://licheepi-nano/defconfig \
+		file://licheepi-nano/5.2-001-dts-add-nor-flash-support.patch \
+		file://licheepi-nano/5.2-002-add-usb-support.patch \
+        file://licheepi-nano/defconfig \
         "
