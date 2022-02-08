@@ -84,13 +84,13 @@ index 0000000..6542c69
 +
 +            partition@80000 {
 +                label = "kernel";
-+                reg = <0x80000 0x440000>;
++                reg = <0x80000 0x4C0000>;
 +                read-only;
 +            };
 +
 +            partition@4A0000 {
 +                label = "rootfs";
-+                reg = <0x4C0000 0xB80000>;
++                reg = <0x4C0000 0xA02400>;
 +            };
 +		};
 +	};
@@ -142,7 +142,7 @@ index 07b6a27..a79d85a 100644
 +CONFIG_USE_BOOTARGS=y
 +CONFIG_BOOTARGS="panic=5 rootwait root=/dev/mtdblock3 rw rootfstype=jffs2"
 +CONFIG_USE_BOOTCOMMAND=y
-+CONFIG_BOOTCOMMAND="sf probe 0 50000000;sf read 0x80c00000 0x70000 0x10000;sf read 0x80008000 0x80000 0x440000;bootm 0x80008000 - 0x80c00000"
++CONFIG_BOOTCOMMAND="sf probe 0 50000000;sf read 0x80c00000 0x70000 0x10000;sf read 0x80008000 0x80000 0x4C0000;bootm 0x80008000 - 0x80c00000"
 +CONFIG_CONSOLE_MUX=y
 +
 +CONFIG_SYS_TEXT_BASE=0x81700000
