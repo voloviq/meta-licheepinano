@@ -118,5 +118,15 @@ TBD <br>
 10. Flash SPI NOR flash
     ***sunxi-fel -p spiflash-write 0 ~/yocto/tmp/deploy/images/licheepinano-spinor/core-image-minimal-licheepinano-spinor.sunxi-spinor***<br>
 
+11. How to handle GPIO from userfs - example (used PE3 as GPIO)
+
+    1. Take a GPIO for instance PE3<br>
+    ***echo 131 > /sys/class/gpio/export***<br>
+    2. Set as out or in<br>
+    ***echo "out" > /sys/class/gpio/gpio131/direction***<br>
+    3. Set GPIO state if configured as ouput<br>
+    ***echo 1 > /sys/class/gpio/gpio131/value***<br>
+    ***echo 0 > /sys/class/gpio/gpio131/value***<br>
+    
 # Limitation
 	- no wiringpi or similar library to driver GPIO in C code
