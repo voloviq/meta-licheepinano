@@ -67,7 +67,7 @@ TBD <br>
 
 5. Modify local.conf(located in ~/yocto/build/licheepinano/conf) file
 
-    - modify line with "MACHINE ??" to add "licheepinano"
+    - modify line with "MACHINE ??" to add "licheepinano-sdcard" or for SPI NOR Flash "licheepinano-spinor"
 
     - align *DL_DIR = "${HOME}/yocto/downloads"* <br>
 
@@ -77,11 +77,16 @@ TBD <br>
     
     - add at the end following records <br> <br>
     	*RM_OLD_IMAGE = "1"* <br>
-	*INHERIT += "rm_work"* <br>
+	    *INHERIT += "rm_work"* <br>
+    - for spi flash change DISTRO ?= "poky" to DISTRO ?= "licheepinano-tiny" <br>
 
     **Note:** Please adapt rest of conf/local.conf parameters if necessary. <br>
 
 6. Build objects
+
+    - When using SPI NOR Flash use following image
+    - core image minimal <br>
+      ***bitbake core-image-minimal*** <br>
 
     - console image <br>
       ***bitbake console-image*** <br>
@@ -102,11 +107,16 @@ TBD <br>
     **Note:** <br>
     Be 100% sure to provide a valid device name (**of=/dev/sde/mmcblk0**). Wrong name "/dev/sde/mmcblk0" dameage Your system file ! <br> <br>
         Nano version <br>
-    	***sudo dd if=~/yocto/tmp/deploy/images/licheepinano/console-image-licheepinano.sunxi-sdimg of=/dev/mmcblk0 bs=1024*** <br>
+    	***sudo dd if=~/yocto/tmp/deploy/images/licheepinano-sdcard/core-image-minimal-licheepinano-sdcard.sunxi-sdimg of=/dev/mmcblk0 bs=1024*** <br>
+
+9. SPI NOR Flash update tool compilation(if valid sunxi-tools installed go to point 10)
+    ***git clone https://github.com/Icenowy/sunxi-tools.git -b f1c100s-spiflash***<br>
+    ***sudo apt-get install libz libusb-1.0-0-dev***<br>
+    ***make***<br>
+    ***sudo make install***<br>
+
+10. Flash SPI NOR flash
+    ***sunxi-fel -p spiflash-write 0 ~/yocto/tmp/deploy/images/licheepinano-spinor/core-image-minimal-licheepinano-spinor.sunxi-spinor***<br>
 
 # Limitation
-
-	- rootfs-resize not working (SD CARD size can be resized manualy)
 	- no wiringpi or similar library to driver GPIO in C code
-	- wifi not working, missing in dts
-	- spi flash not supported only mmc0 working
