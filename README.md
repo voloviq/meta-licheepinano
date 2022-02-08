@@ -115,10 +115,10 @@ TBD <br>
     ***make***<br>
     ***sudo make install***<br>
 
-10. Flash SPI NOR flash
+10. Flash SPI NOR flash<br>
     ***sunxi-fel -p spiflash-write 0 ~/yocto/tmp/deploy/images/licheepinano-spinor/core-image-minimal-licheepinano-spinor.sunxi-spinor***<br>
 
-11. How to handle GPIO from userfs - example (used PE3 as GPIO)
+11. How to handle GPIO from userfs - example (used PE3 as GPIO)<br>
 
     1. Take a GPIO for instance PE3<br>
     ***echo 131 > /sys/class/gpio/export***<br>
