@@ -109,7 +109,7 @@ TBD <br>
         Nano version <br>
     	***sudo dd if=~/yocto/tmp/deploy/images/licheepinano-sdcard/core-image-minimal-licheepinano-sdcard.sunxi-sdimg of=/dev/mmcblk0 bs=1024*** <br>
 
-9. SPI NOR Flash update tool compilation(if valid sunxi-tools installed go to point 10)
+9. SPI NOR Flash update tool compilation(if valid sunxi-tools installed go to point 10)<br>
     ***git clone https://github.com/Icenowy/sunxi-tools.git -b f1c100s-spiflash***<br>
     ***sudo apt-get install libz libusb-1.0-0-dev***<br>
     ***make***<br>
