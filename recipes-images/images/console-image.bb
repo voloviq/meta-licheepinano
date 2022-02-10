@@ -28,6 +28,7 @@ UTILITIES_INSTALL = " \
     libstdc++-dev \
     openssh-sftp \
     resize-rootfs \
+    gpio \
 "
 
 TSLIB = " \
@@ -39,6 +40,7 @@ TSLIB = " \
 "
 
 IMAGE_INSTALL += " \
+  ${NETWORK_APP} \
   ${SYSTEM_TOOLS_INSTALL} \
   ${UTILITIES_INSTALL} \
   ${TSLIB} \
