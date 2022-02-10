@@ -18,11 +18,11 @@ Lichee Pi Nano dedicated LCD Display model sh050jgb30 <br>
 Assumed that Linux Ubuntu is installed
 
 ## List of tested elements
-
-Lcd <br>
-Touchscreen <br>
+Example application for GPIO handling
 
 ## List of not tested elements
+Lcd <br>
+Touchscreen <br>
 
 TBD <br>
 
@@ -129,4 +129,4 @@ TBD <br>
     ***echo 0 > /sys/class/gpio/gpio131/value***<br>
     
 # Limitation
-	- no wiringpi or similar library to driver GPIO in C code
+	
