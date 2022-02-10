@@ -12,19 +12,19 @@ int main(void)
 {
     char ret = 0;
     ret = sunxi_gpio_init();
-    printf("Hello, world!\r\n");
+    //printf("Hello, world!\r\n");
     if(ret){
         printf("sunxi_gpio_init ERROR\n");
         exit(-1);
     };
-    sunxi_gpio_set_cfgpin(SUNXI_GPE(3), SUNXI_GPIO_OUTPUT);
+    sunxi_gpio_set_cfgpin(SUNXI_GPA(0), SUNXI_GPIO_OUTPUT);
     while (1)
     {
-        printf("BLINK OFF\r\n");
-        sunxi_gpio_output(SUNXI_GPE(3), 0);
+        //printf("BLINK OFF\r\n");
+        sunxi_gpio_output(SUNXI_GPA(0), 0);
         msleep(200);
-        printf("BLINK ON\r\n");
-        sunxi_gpio_output(SUNXI_GPE(3), 1);
+        //printf("BLINK ON\r\n");
+        sunxi_gpio_output(SUNXI_GPA(0), 1);
         msleep(300);
     }
     return 0;

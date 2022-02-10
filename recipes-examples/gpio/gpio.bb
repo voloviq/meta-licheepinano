@@ -15,12 +15,6 @@ SRC_URI = "	file://gpio-example.c \
 
 S = "${WORKDIR}"
 
-DEPENDS = "libpthread-stubs"
-
-LDFLAGS='-L=/usr/lib -lpthread'
-
-LIBS += "libpthread-stubs"
-
 do_compile() {
 		${CC} ${LDFLAGS} -c gpio-example.c -c gpio_lib.c
 	    ${CC} ${LDFLAGS} gpio-example.o gpio_lib.o -o gpio-example
@@ -34,6 +28,5 @@ do_install() {
 }
 
 inherit update-rc.d
- 
+
 INITSCRIPT_NAME="gpio-example"
-#INITSCRIPT_PARAMS= "defaults 10"

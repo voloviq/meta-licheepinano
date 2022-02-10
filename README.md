@@ -116,6 +116,10 @@ TBD <br>
     ***sudo make install***<br>
 
 10. Flash SPI NOR flash<br>
+    To enter into bootlader mode it is necessary to erase u-boot section from spi nor flash.<br>
+    To do this it is necessary to stop booting U-Boot and enter following commands.<br>
+    ***sf probe 0***<br>
+    ***sf erase 0 70000***<br>
     ***sunxi-fel -p spiflash-write 0 ~/yocto/tmp/deploy/images/licheepinano-spinor/core-image-minimal-licheepinano-spinor.sunxi-spinor***<br>
 
 11. How to handle GPIO from userfs - example (used PE3 as GPIO)<br>
