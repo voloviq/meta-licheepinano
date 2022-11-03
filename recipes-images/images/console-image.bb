@@ -12,6 +12,7 @@ inherit core-image
 SYSTEM_TOOLS_INSTALL = " \
     i2c-tools \
     tzdata \
+    usb-gadget-dhcp \
 "
 
 KERNEL_EXTRA_INSTALL = " \

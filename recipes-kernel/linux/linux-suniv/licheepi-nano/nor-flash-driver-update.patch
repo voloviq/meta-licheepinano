@@ -1,0 +1,20 @@
+diff --git a/drivers/mtd/spi-nor/spi-nor.c b/drivers/mtd/spi-nor/spi-nor.c
+index 23745c9..757212a 100644
+--- a/drivers/mtd/spi-nor/spi-nor.c
++++ b/drivers/mtd/spi-nor/spi-nor.c
+@@ -2118,10 +2118,14 @@ static const struct flash_info spi_nor_ids[] = {
+ 	},
+ 	{ "w25q80", INFO(0xef5014, 0, 64 * 1024,  16, SECT_4K) },
+ 	{ "w25q80bl", INFO(0xef4014, 0, 64 * 1024,  16, SECT_4K) },
+-	{ "w25q128", INFO(0xef4018, 0, 64 * 1024, 256, 0) },
++	/*{ "w25q128", INFO(0xef4018, 0, 64 * 1024, 256, 0) },*/
++	{ "xt25f128b", INFO(0x0b4018, 0, 64 * 1024, 256, 0) },
+ 	{ "w25q256", INFO(0xef4019, 0, 64 * 1024, 512, SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
+ 	{ "w25m512jv", INFO(0xef7119, 0, 64 * 1024, 1024,
+ 			SECT_4K | SPI_NOR_QUAD_READ | SPI_NOR_DUAL_READ) },
++			
++	/* XTX Technology (Shenzhen) Limited */
++/*	{ "xt25f128b", INFO(0x0B4018, 0, 64 * 1024, 256, 0 | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ | SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB) }, */
+ 
+ 	/* Catalyst / On Semiconductor -- non-JEDEC */
+ 	{ "cat25c11", CAT25_INFO(  16, 8, 16, 1, SPI_NOR_NO_ERASE | SPI_NOR_NO_FR) },

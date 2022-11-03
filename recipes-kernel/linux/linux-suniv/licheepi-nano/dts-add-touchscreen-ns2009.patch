@@ -1,0 +1,42 @@
+diff --git a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
+index 816ee4d..b5e3a6b 100644
+--- a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
++++ b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
+@@ -59,20 +59,16 @@
+ };
+ 
+ &i2c0 {
+-    pinctrl-0 = <&i2c0_pins>;
+-    pinctrl-names = "default";
+-    status = "okay";
+-
+-    gt911: touchscreen@14 {
+-        compatible = "goodix,gt911";
+-        reg = <0x14>;
+-        interrupt-parent = <&pio>;
+-        interrupts = <4 10 IRQ_TYPE_EDGE_FALLING>; /* (PE10) */
+-        pinctrl-names = "default";
+-        irq-gpios = <&pio 4 10 GPIO_ACTIVE_HIGH>; /* (PE10) */
+-        reset-gpios = <&pio 4 9 GPIO_ACTIVE_HIGH>; /* RST (PE9) */
+-        /* touchscreen-swapped-x-y */
+-    };
++	pinctrl-0 = <&i2c0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	ns2009: touchscreen@48 {
++		compatible = "nsiway,ns2009";
++		reg = <0x48>;
++		touchscreen-fuzz-x = <8>;
++		touchscreen-fuzz-y = <8>;
++	};
+ };
+ 
+ &mmc0 {
+@@ -196,4 +192,4 @@
+ &usbphy {
+ 	usb0_id_det-gpio = <&pio 4 2 GPIO_ACTIVE_HIGH>; /* PE2 */
+ 	status = "okay";
+-};
+\ No newline at end of file
++};

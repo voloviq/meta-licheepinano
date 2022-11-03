@@ -53,6 +53,7 @@ KERNEL_EXTRA_INSTALL = " \
 
 DEV_TOOLS_INSTALL = " \
     mtd-utils \
+    usb-gadget-dhcp \
 "
 
 NETWORK_TOOLS_INSTALL = " \
