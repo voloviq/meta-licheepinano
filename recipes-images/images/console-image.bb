@@ -30,6 +30,7 @@ UTILITIES_INSTALL = " \
     openssh-sftp \
     resize-rootfs \
     gpio \
+    parted \
 "
 
 TSLIB = " \

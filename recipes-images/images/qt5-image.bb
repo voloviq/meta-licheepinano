@@ -71,6 +71,7 @@ UTILITIES_INSTALL = " \
     resize-rootfs \
     ppp \
     tzdata \
+    parted \
 "
 
 TSLIB = " \
