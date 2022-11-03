@@ -48,4 +48,4 @@ IMAGE_INSTALL += " \
 "
 
 #Always add cmake to sdk
-TOOLCHAIN_HOST_TASK_append = " nativesdk-cmake"
+TOOLCHAIN_HOST_TASK:append = " nativesdk-cmake"

@@ -18,10 +18,12 @@ inherit image_types
 #	 Before change partition offsets here do it first for U-Boot DTS and defconifg plus Kernel DTS
 
 # This image depends on the rootfs image
+RDEPENDS_mtd-utils-tests += "bash"
 IMAGE_TYPEDEP_sunxi-spinor = "${SPINOR_ROOTFS_TYPE}"
 SPINOR_ROOTFS_TYPE ?= "jffs2"
 
 do_image_sunxi_spinor[depends] += " \
+			mtd-utils-native:do_populate_sysroot \
 			mtools-native:do_populate_sysroot \
 			dosfstools-native:do_populate_sysroot \
 			virtual/kernel:do_deploy \
@@ -31,7 +33,7 @@ do_image_sunxi_spinor[depends] += " \
 # The NOR SPI Flash image name
 SPINOR = "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.sunxi-spinor"
 
-IMAGE_CMD_sunxi-spinor () {
+IMAGE_CMD:sunxi-spinor () {
 
 	# Initialize spi nor flash image file
 	mkfs.jffs2 -s 0x100 -e 0x10000 --pad=0xA02400 -d ${WORKDIR}/rootfs -o ${DEPLOY_DIR_IMAGE}/jffs2.img

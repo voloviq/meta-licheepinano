@@ -11,7 +11,7 @@ COMPATIBLE_MACHINE = "(suniv)"
 
 DEFAULT_PREFERENCE_suniv="1"
 
-SRC_URI = "git://github.com/henrycoding/uboot-f1c100s.git;branch=master \
+SRC_URI = "git://github.com/henrycoding/uboot-f1c100s.git;branch=master;protocol=https \
 		file://boot.cmd \
 		"
 
@@ -26,6 +26,6 @@ UBOOT_ENV = "boot"
 
 EXTRA_OEMAKE += ' HOSTLDSHARED="${BUILD_CC} -shared ${BUILD_LDFLAGS} ${BUILD_CFLAGS}" '
 
-do_compile_append() {
+do_compile:append() {
     ${B}/tools/mkimage -C none -A arm -T script -d ${WORKDIR}/boot.cmd ${WORKDIR}/${UBOOT_ENV_BINARY}
 }

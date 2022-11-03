@@ -14,16 +14,21 @@ require recipes-kernel/linux/linux-yocto.inc
 KBRANCH ?= "nano-5.2-flash"
 
 # Pull in the devicetree files into the rootfs
-# RDEPENDS_${KERNEL_PACKAGE_NAME}-base += "kernel-devicetree"
+# RDEPENDS_${KERNEL_PACKAGE_NAME}:base += "kernel-devicetree"
 
 KCONFIG_MODE ?= "alldefconfig"
 KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 
 S = "${WORKDIR}/git"
-SRCREV_pn-${PN} = "05696d0119680f12afe74d70a26f8d35c208ba4a"
+SRCREV:pn-${PN} = "05696d0119680f12afe74d70a26f8d35c208ba4a"
+SRC_URI[sha256sum] = "0a1a5ae2f30eb2b38215e59077f045aabd7f4e2857a881482f02ea48186105d8"
 
-SRC_URI += "git://github.com/Lichee-Pi/linux.git;branch=nano-5.2-flash;depth=1;protocol=git \
+KERNEL_DANGLING_FEATURES_WARN_ONLY = "t"
+
+SRC_URI += "git://github.com/Lichee-Pi/linux.git;branch=nano-5.2-flash;depth=1;protocol=https \
 		file://licheepi-nano/5.2-001-dts-add-nor-flash-support.patch \
 		file://licheepi-nano/5.2-002-add-usb-support.patch \
-        file://licheepi-nano/defconfig \
+		file://licheepi-nano/dtc-lexer-modification-to-lates-gcc.patch \
+		file://licheepi-nano/usb-gadget.patch \
+       		file://licheepi-nano/defconfig \
         "
