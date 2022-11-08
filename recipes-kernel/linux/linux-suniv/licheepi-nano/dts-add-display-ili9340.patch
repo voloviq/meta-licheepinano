@@ -1,0 +1,197 @@
+diff --git b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
+new file mode 100644
+index 0000000..2b29496
+--- /dev/null
++++ b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
+@@ -0,0 +1,191 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR X11)
++/*
++ * Copyright 2018 Icenowy Zheng <icenowy@aosc.io>
++ */
++
++/dts-v1/;
++#include "suniv-f1c100s.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include "sunxi-common-regulators.dtsi"
++#include "suniv-f1c100s-ns2009.dtsi"
++
++/ {
++	model = "Lichee Pi Nano";
++	compatible = "licheepi,licheepi-nano", "allwinner,suniv-f1c100s";
++
++	aliases {
++		serial0 = &uart0;
++		spi0 = &spi0;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	reg_vcc3v3: vcc3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++};
++
++&be0 {
++	status = "okay";
++};
++
++&de {
++	status = "okay";
++};
++
++&mmc0 {
++	vmmc-supply = <&reg_vcc3v3>;
++	bus-width = <4>;
++	broken-cd;
++	status = "okay";
++};
++
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pins_a>;
++	status = "okay";
++
++	flash: xt25f128b@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "xtx,xt25f128b", "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <50000000>;
++		partitions {
++			compatible = "fixed-partitions";
++            #address-cells = <1>;
++            #size-cells = <1>;
++
++            partition@0 {
++                label = "u-boot";
++                reg = <0x000000 0x70000>;
++                read-only;
++            };
++
++            partition@70000 {
++                label = "dtb";
++                reg = <0x70000 0x10000>;
++                read-only;
++            };
++
++            partition@80000 {
++                label = "kernel";
++                reg = <0x80000 0x440000>;
++                read-only;
++            };
++
++            partition@4C0000 {
++                label = "rootfs";
++                reg = <0x4C0000 0xB40000>;
++            };
++		};
++	};
++};
++
++&spi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi1_pins_a>;
++	status = "okay";
++
++	gc9a01: gc9a01@0 {
++        compatible = "ilitek,ili9340";
++        reg = <0>;
++        reset-gpios = <&pio 4 3 0>;
++        dc-gpios = <&pio 4 4 0>;
++        led-gpios = <&pio 4 5 1>;
++        spi-max-frequency = <20000000>;
++        buswidth = <8>;
++        width = <240>;
++        height = <240>;
++        rotate = <0>;
++        fps = <50>;
++        bgr;
++        debug = <0>;
++        init = <
++            0x01000011 /* Sleep mode OFF */
++            0x02000078 /* Delay 120ms */
++            0x010000EF /* Inter register enable 2 */
++            0x010000EB 0x14
++            /* BEGIN set inter_command HIGH */
++            0x010000FE /* Inter register enable 1 */
++            0x010000EF /* Inter register enable 2 */
++            /* END set inter_command HIGH */
++            0x010000EB 0x14
++            0x01000084 0x40
++            0x01000085 0xFF
++            0x01000086 0xFF
++            0x01000087 0xFF
++            0x01000088 0x0A
++            0x01000089 0x21
++            0x0100008A 0x00
++            0x0100008B 0x80
++            0x0100008C 0x01
++            0x0100008D 0x01
++            0x0100008E 0xFF
++            0x0100008F 0xFF
++            0x010000B6 0x00 0x00 /* Display function control */
++            0x01000036 0x08 /* Memory access control */
++            0x0100003A 0x05 /* Pixel format */
++            0x01000090 0x08 0x08 0x08 0x08
++            0x010000BD 0x06
++            0x010000BC 0x00
++            0x010000FF 0x60 0x01 0x04
++            0x010000C3 0x13 /* Voltage regulator 1a */
++            0x010000C4 0x13 /* Voltage regulator 1b */
++            0x010000C9 0x22 /* Voltage regulator 2a */
++            0x010000BE 0x11
++            0x010000E1 0x10 0x0E
++            0x010000DF 0x21 0x0c 0x02
++            0x010000F0 0x45 0x09 0x08 0x08 0x26 0x2A /* Set gamma1 */
++            0x010000F1 0x43 0x70 0x72 0x36 0x37 0x6F /* Set gamma2 */
++            0x010000F2 0x45 0x09 0x08 0x08 0x26 0x2A /* Set gamma3 */
++            0x010000F3 0x43 0x70 0x72 0x36 0x37 0x6F /* Set gamma4 */
++            0x010000ED 0x1B 0x0B
++            0x010000AE 0x77
++            0x010000CD 0x63
++            0x01000070 0x07 0x07 0x04 0x0E 0x0F 0x09 0x07 0x08 0x03
++            0x010000E8 0x34 /* Frame rate */
++            0x01000062 0x18 0x0D 0x71 0xED 0x70 0x70 0x18 0x0F 0x71 0xEF 0x70 0x70
++            0x01000063 0x18 0x11 0x71 0xF1 0x70 0x70 0x18 0x13 0x71 0xF3 0x70 0x70
++            0x01000064 0x28 0x29 0xF1 0x01 0xF1 0x00 0x07
++            0x01000066 0x3C 0x00 0xCD 0x67 0x45 0x45 0x10 0x00 0x00 0x00
++            0x01000067 0x00 0x3C 0x00 0x00 0x00 0x01 0x54 0x10 0x32 0x98
++            0x01000074 0x10 0x85 0x80 0x00 0x00 0x4E 0x00
++            0x01000098 0x3e 0x07
++            0x01000035 /* Tearing effect ON */
++            0x01000021 /* Display inversion ON */
++            0x01000011 /* Sleep mode OFF */
++            0x0200000C /* Delay 12ms */
++            0x01000029 /* Display ON */
++            0x02000014 /* Delay 20ms */
++            >;
++	};
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pe_pins>;
++	status = "okay";
++};
++
++&otg_sram {
++	status = "okay";
++};
++
++
++&usb_otg {
++	dr_mode = "otg";
++	status = "okay";
++};
++
++&usbphy {
++	usb0_id_det = <&pio 4 2 GPIO_ACTIVE_HIGH>; /* PE2 */
++	status = "okay";
++};

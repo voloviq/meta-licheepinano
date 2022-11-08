@@ -1,25 +1,18 @@
-diff --git a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
-index 816ee4d..b5e3a6b 100644
---- a/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
-+++ b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
-@@ -59,20 +59,16 @@
- };
- 
- &i2c0 {
--    pinctrl-0 = <&i2c0_pins>;
--    pinctrl-names = "default";
--    status = "okay";
--
--    gt911: touchscreen@14 {
--        compatible = "goodix,gt911";
--        reg = <0x14>;
--        interrupt-parent = <&pio>;
--        interrupts = <4 10 IRQ_TYPE_EDGE_FALLING>; /* (PE10) */
--        pinctrl-names = "default";
--        irq-gpios = <&pio 4 10 GPIO_ACTIVE_HIGH>; /* (PE10) */
--        reset-gpios = <&pio 4 9 GPIO_ACTIVE_HIGH>; /* RST (PE9) */
--        /* touchscreen-swapped-x-y */
--    };
+diff --git b/arch/arm/boot/dts/suniv-f1c100s-ns2009.dtsi b/arch/arm/boot/dts/suniv-f1c100s-ns2009.dtsi
+new file mode 100644
+index 0000000..c3b6615
+--- /dev/null
++++ b/arch/arm/boot/dts/suniv-f1c100s-ns2009.dtsi
+@@ -0,0 +1,27 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR X11)
++/*
++ * Copyright 2022 Michal Wolowik <michwolo@gmail.com>
++ */
++
++#include "suniv-f1c100s.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++
++&i2c0 {
 +	pinctrl-0 = <&i2c0_pins>;
 +	pinctrl-names = "default";
 +	status = "okay";
@@ -30,13 +23,11 @@ index 816ee4d..b5e3a6b 100644
 +		touchscreen-fuzz-x = <8>;
 +		touchscreen-fuzz-y = <8>;
 +	};
- };
- 
- &mmc0 {
-@@ -196,4 +192,4 @@
- &usbphy {
- 	usb0_id_det-gpio = <&pio 4 2 GPIO_ACTIVE_HIGH>; /* PE2 */
- 	status = "okay";
--};
-\ No newline at end of file
++};
++
++&pio {
++    ts_reset_pin: ts_reset_pin@0 {
++        pins = "PE9";
++        function = "gpio_out";
++    };
 +};

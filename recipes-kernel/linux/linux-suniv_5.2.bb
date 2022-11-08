@@ -26,11 +26,13 @@ SRC_URI[sha256sum] = "0a1a5ae2f30eb2b38215e59077f045aabd7f4e2857a881482f02ea4818
 KERNEL_DANGLING_FEATURES_WARN_ONLY = "t"
 
 SRC_URI += "git://github.com/Lichee-Pi/linux.git;branch=nano-5.2-flash;depth=1;protocol=https \
-		file://licheepi-nano/dts-modifications.patch \
+		file://licheepi-nano/dts-common-modifications.patch \
+		file://licheepi-nano/dts-add-display-ili9340.patch \
 		file://licheepi-nano/nor-flash-driver-update.patch \
 		file://licheepi-nano/add-touchscreen-driver-ns2009.patch \
 		file://licheepi-nano/dts-add-touchscreen-ns2009.patch \
 		file://licheepi-nano/usb-driver-modifications.patch \
+		file://licheepi-nano/fbtft-driver-modifications.patch \
 		file://licheepi-nano/dtc-lexer-modification-to-lates-gcc.patch \
        		file://licheepi-nano/defconfig \
         "

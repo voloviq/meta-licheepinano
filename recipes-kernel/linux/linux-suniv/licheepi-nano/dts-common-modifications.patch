@@ -1,0 +1,59 @@
+diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+index 6d1d791..d67c0c0 100644
+--- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
++++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+@@ -177,7 +177,8 @@
+ 			i2c0_pins: i2c0 {
+ 				pins = "PE11", "PE12";
+ 				function = "i2c0";
+-            };
++				bias-pull-up;
++            		};
+ 
+ 			uart0_pe_pins: uart0-pe-pins {
+ 				pins = "PE0", "PE1";
+@@ -202,6 +203,11 @@
+ 				pins = "PC0", "PC1", "PC2", "PC3";
+ 				function = "spi0";
+ 			};
++			
++			spi1_pins_a: spi1-pins-pa {
++				pins = "PA0", "PA1", "PA2", "PA3";
++				function = "spi1";
++			};
+ 		};
+ 
+ 		timer@1c20c00 {
+@@ -279,6 +285,32 @@
+ 			status = "disabled";
+ 		};
+ 
++        usb_otg: usb@1c13000 {
++            compatible = "allwinner,suniv-f1c100s-musb";
++            reg = <0x01c13000 0x0400>;
++            clocks = <&ccu CLK_BUS_OTG>;
++            resets = <&ccu RST_BUS_OTG>;
++            interrupts = <26>;
++            interrupt-names = "mc";
++            phys = <&usbphy 0>;
++            phy-names = "usb";
++            extcon = <&usbphy 0>;
++            allwinner,sram = <&otg_sram 1>;
++            status = "disabled";
++        };
++
++        usbphy: phy@1c13400 {
++            compatible = "allwinner,suniv-f1c100s-usb-phy";
++            reg = <0x01c13400 0x10>;
++            reg-names = "phy_ctrl";
++            clocks = <&ccu CLK_USB_PHY0>;
++            clock-names = "usb0_phy";
++            resets = <&ccu RST_USB_PHY0>;
++            reset-names = "usb0_reset";
++            #phy-cells = <1>;
++            status = "disabled";
++        };
++
+ 		fe0: display-frontend@1e00000 {
+ 			compatible = "allwinner,suniv-f1c100s-display-frontend";
+ 			reg = <0x01e00000 0x20000>;
