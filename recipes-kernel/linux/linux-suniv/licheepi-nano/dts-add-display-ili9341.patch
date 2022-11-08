@@ -1,0 +1,137 @@
+diff --git b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
+new file mode 100644
+index 0000000..923149d
+--- /dev/null
++++ b/arch/arm/boot/dts/suniv-f1c100s-licheepi-nano-with-lcd.dts
+@@ -0,0 +1,131 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR X11)
++/*
++ * Copyright 2018 Icenowy Zheng <icenowy@aosc.io>
++ */
++
++/dts-v1/;
++#include "suniv-f1c100s.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include "sunxi-common-regulators.dtsi"
++#include "suniv-f1c100s-ns2009.dtsi"
++
++/ {
++	model = "Lichee Pi Nano";
++	compatible = "licheepi,licheepi-nano", "allwinner,suniv-f1c100s";
++
++	aliases {
++		serial0 = &uart0;
++		spi0 = &spi0;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	reg_vcc3v3: vcc3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++};
++
++&be0 {
++	status = "okay";
++};
++
++&de {
++	status = "okay";
++};
++
++&mmc0 {
++	vmmc-supply = <&reg_vcc3v3>;
++	bus-width = <4>;
++	broken-cd;
++	status = "okay";
++};
++
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pins_a>;
++	status = "okay";
++
++	flash: xt25f128b@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "xtx,xt25f128b", "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <50000000>;
++		partitions {
++			compatible = "fixed-partitions";
++            #address-cells = <1>;
++            #size-cells = <1>;
++
++            partition@0 {
++                label = "u-boot";
++                reg = <0x000000 0x70000>;
++                read-only;
++            };
++
++            partition@70000 {
++                label = "dtb";
++                reg = <0x70000 0x10000>;
++                read-only;
++            };
++
++            partition@80000 {
++                label = "kernel";
++                reg = <0x80000 0x440000>;
++                read-only;
++            };
++
++            partition@4C0000 {
++                label = "rootfs";
++                reg = <0x4C0000 0xB40000>;
++            };
++		};
++	};
++};
++
++&spi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi1_pins_a>;
++	status = "okay";
++
++	z240it010v01: z240it010v01@0 {
++		compatible = "ilitek,ili9341";
++		reg = <0>;
++		reset-gpios = <&pio 4 3 0>;
++		dc-gpios = <&pio 4 4 0>;
++		led-gpios = <&pio 4 5 1>;
++		spi-max-frequency = <50000000>;
++		bgr;
++		rotate = <90>;
++		fps = <30>;
++		buswidth = <8>;
++		debug = <0>;
++	};
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pe_pins>;
++	status = "okay";
++};
++
++&otg_sram {
++	status = "okay";
++};
++
++
++&usb_otg {
++	dr_mode = "otg";
++	status = "okay";
++};
++
++&usbphy {
++	usb0_id_det = <&pio 4 2 GPIO_ACTIVE_HIGH>; /* PE2 */
++	status = "okay";
++};

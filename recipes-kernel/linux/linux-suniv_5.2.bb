@@ -27,7 +27,7 @@ KERNEL_DANGLING_FEATURES_WARN_ONLY = "t"
 
 SRC_URI += "git://github.com/Lichee-Pi/linux.git;branch=nano-5.2-flash;depth=1;protocol=https \
 		file://licheepi-nano/dts-common-modifications.patch \
-		file://licheepi-nano/dts-add-display-ili9340.patch \
+		file://licheepi-nano/dts-add-display-ili9341.patch \
 		file://licheepi-nano/nor-flash-driver-update.patch \
 		file://licheepi-nano/add-touchscreen-driver-ns2009.patch \
 		file://licheepi-nano/dts-add-touchscreen-ns2009.patch \
